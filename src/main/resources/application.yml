@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/nbcam?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Asia/Seoul
+    username: root
+    password: "0000"
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        format_sql: true
+    defer-datasource-initialization: true
+
+jwt:
+  secret:
+    key: djksjfskfeiusdnckalshfksdifuaiwueaslahdvfjgkajeorirotkldfasurieashfdkha
+
+logging:
+  level:
+    org.springframework: INFO
