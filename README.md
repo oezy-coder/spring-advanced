@@ -103,35 +103,32 @@ Todo 조회 시 연관된 User가 LAZY 로딩되어 추가 쿼리 발생 가능 
 
 ---
 
-## ✔️ 레벨 4 — 테스트 코드 수정
+# ✔️ 레벨 4 — 테스트 코드 수정
 
 ## 1) 테스트 코드 연습 - 1
 
 ### 문제 원인
-
-`boolean matches = passwordEncoder.matches(encodedPassword, rawPassword);` 에서
-`encodedPassword`와 `rawPassword` 인자 순서가 뒤바뀜 → 결과가 항상 `false`
+- `boolean matches = passwordEncoder.matches(encodedPassword, rawPassword);`
+- `encodedPassword` 와 `rawPassword` 인자 순서가 뒤바뀌어 결과가 항상 `false`가 됨
 
 ### 해결 내용
-
-* `assertTrue(matches);` → `assertFalse(matches);` 로 수정하여 테스트가 정상 통과하도록 변경
+- `assertTrue(matches);` → `assertFalse(matches);` 로 수정하여 테스트가 정상 통과하도록 변경
 
 ---
 
 ## 2) 테스트 코드 연습 - 2 (1번 케이스)
 
 ### 문제 원인
-
-* 테스트 메서드명 `manager_목록_조회_시_Todo가_없다면_NPE_에러를_던진다()`가 실제 예외 타입과 불일치
-(NPE가 아니라 InvalidRequestException 발생)
-* 단언문 `assertEquals`의 expected 메시지가 “Manager not found”로 되어 있으나,
-실제 컨텍스트는 Todo 부재이므로 메시지가 맞지 않음
+- 테스트 메서드명  
+  **manager_목록_조회_시_Todo가_없다면_NPE_에러를_던진다()**  
+  → 실제 발생 예외는 `NullPointerException`이 아니라 **InvalidRequestException** 임
+- 단언문 `assertEquals`의 expected 메시지가 `"Manager not found"`로 되어 있으나,  
+  실제 상황은 **Todo 부재**이므로 메시지가 일치하지 않음
 
 ### 해결 내용
-
-* 테스트 메서드명에서 NPE → InvalidRequestException 으로 수정
-* `assertEquals("Manager not found", exception.getMessage());` →
-`"Todo not found"` 로 expected 메시지 수정
+- 테스트 메서드명에서 `NPE` → `InvalidRequestException` 로 변경
+- `assertEquals("Manager not found", exception.getMessage());`  
+  → `"Todo not found"` 로 expected 메시지 수정
 
 ---
 
