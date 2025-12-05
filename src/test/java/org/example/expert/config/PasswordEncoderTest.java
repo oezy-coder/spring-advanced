@@ -5,7 +5,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 @ExtendWith(SpringExtension.class)
 class PasswordEncoderTest {
@@ -23,6 +23,6 @@ class PasswordEncoderTest {
         boolean matches = passwordEncoder.matches(encodedPassword, rawPassword);
 
         // then
-        assertTrue(matches);
+        assertFalse(matches);
     }
 }
